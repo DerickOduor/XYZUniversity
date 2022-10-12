@@ -49,6 +49,15 @@ namespace XYZUniversity.Controllers
 
                 DataTable dt = db.GetRecords(search);
 
+                if (dt.Rows.Count <= 0)
+                {
+                    response.Add("code", "001");
+                    response.Add("status", false);
+                    response.Add("message", "No records found!");
+
+                    return response;
+                }
+
                 JArray children = new JArray();
                 int i = 0;
                 foreach (DataRow row in dt.Rows)
